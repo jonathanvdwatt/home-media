@@ -3,12 +3,15 @@
 This application consists of 3 docker containers that spin up Plex, Sonarr and SABNZBD.
 
 **Plex**
+
 A media player and library that supports chromecast and loads of plugins.
 
 **Sonarr**
+
 A tool to automatically download and manage your library of TV Series. Do not use this for downloading copywrited material!
 
 **SABNZBD**
+
 A binary newsgroup download tool for NZBs.
 
 ## Getting Started
