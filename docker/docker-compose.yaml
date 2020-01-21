@@ -1,0 +1,64 @@
+version: "3.5"
+
+services:
+
+  plex:
+    build:
+      context: ./plex
+    image: "${COMPOSE_PROJECT_NAME}/plex:${IMAGE_TAG}"
+    hostname: "Notflix"
+    ports:
+        - "32400:32400"
+        - "3005:3005"
+        - "8324:8324"
+        - "32469:32469"
+        - "1900:1900"
+        - "32410:32410"
+        - "32412:32412"
+        - "32413:32413"
+        - "32414:32414"
+    volumes:
+        - /dockervolumes/plex/database:/config
+        - /dockervolumes/plex/temp:/transcode
+        - /external:/media
+    environment:
+        - ADVERTISE_IP=${ADVERTISE_IP}
+        - PLEX_CLAIM=${ADVERTISE_IP} 
+        - ALLOWED_NETWORKS=${ALLOWED_NETWORKS}
+        - TZ=$TIMEZONE
+    restart: unless-stopped
+    networks:
+        - media
+  
+  sabnzbd:
+    build:
+       context: ./sabnzbd
+    volumes:
+        - /dockervolumes/sabnzbd/datadir:/datadir
+        - /external:/media
+    ports:
+        - "8080:8080"
+    restart: unless-stopped
+    networks:
+        - media
+
+  sonarr:
+    build:
+      context: ./sonarr
+    environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=${TIMEZONE}
+        - UMASK_SET=022 
+    volumes:
+        - /dockervolumes/sonarr/config:/config
+        - /external:/media
+        - /external/downloads:/downloads
+    ports:
+        - 8989:8989
+    restart: unless-stopped
+    networks:
+        - media
+
+networks:
+    media:
