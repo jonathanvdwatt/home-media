@@ -27,6 +27,8 @@ services:
         - ALLOWED_NETWORKS=${ALLOWED_NETWORKS}
         - TZ=$TIMEZONE
     restart: unless-stopped
+    devices:
+        - "/dev/dri:/dev/dri"
     networks:
         - media
   
