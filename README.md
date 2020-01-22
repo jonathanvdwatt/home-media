@@ -33,4 +33,4 @@ cd home-media/docker
 docker-compose up -d
 ```
 
-After the containers are up, setup the Sonarr->SABNZBD API integration and your indexer.
+After the containers are up, setup the Sonarr->SABNZBD API integration, the downloader (Usernet server) and your indexer.
