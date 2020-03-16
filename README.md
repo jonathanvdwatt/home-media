@@ -26,7 +26,7 @@ git clone https://github.com/dankritz/home-media.git
 
 **Note:** Be sure to configure the .env file accordingly! Also, make sure all your media is mounted to /external.
 
-To build the application and lauch the containers:
+To build the application and launch the containers:
 
 ```
 cd home-media/docker
